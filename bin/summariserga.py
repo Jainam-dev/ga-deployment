@@ -30,6 +30,7 @@ class FindSummary:
         """
         sentences = text.split('.')
         return sentences
+
     
     def groupSentence(self,sentences):
         """
@@ -51,13 +52,13 @@ class FindSummary:
     
     def findTopFive(self,sentences,sentLengths):
         sortedIdx = np.argsort(sentLengths)
-        top5idx = sortedIdx[-5:]
+        top5idx = sortedIdx[-3:]
         top5Sents = [sentences[i] for i in top5idx]
         return top5Sents
         
-    def summarise(self,article):
+    def summarise(self):
         
-        articleText = article#  self.loadData()
+        articleText =  self.loadData() #article
         preprocessObj = PreprocessText()
         loweredText = preprocessObj.convertToLower(articleText)
         filteredText = preprocessObj.removeSpecialChar(loweredText)
@@ -70,9 +71,11 @@ class FindSummary:
         summaryText = ' '.join(summaryTextList)
         return summaryText
     
-#if __name__=="__main__":
-#    summaryObj = FindSummary('../config/config')
-#    summaryText = summaryObj.summarise()
+if __name__=="__main__":
+   summaryObj = FindSummary('../config/config')
+   summaryText = summaryObj.summarise()
+   print(summaryText)
+     
         
     
     
